@@ -144,10 +144,13 @@ $(document).ready(async function() {
             else isRegist = res;
         })
         $("#eth-diddoc").val("");
+	$("#didCreateBtn").show();
+	$("#didDeleteBtn").hide();
         alert("tx 확정되었습니다. ");
         console.log("isRegist - ", isRegist);
-
-        document.getElementById("didDeleteBtn").style.display = "none";
+	
+	
+       
 
 
         
@@ -251,7 +254,9 @@ $(document).ready(async function() {
                     
                     ddoc2 = prettier(getDdoc);
                     $("#eth-diddoc").val(JSON.stringify(ddoc2));
-                    document.getElementById("didCreateBtn").style.display = "none";
+			$("#didCreateBtn").hide();
+	$("#didDeleteBtn").show();
+                    
 
                     
                 }
