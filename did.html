@@ -114,7 +114,7 @@ $(document).ready(async function() {
 
     //did 삭제를 위해 개인키 활용해서 recoverAd 하는 방향으로 구현. 근데 컨트랙트 새로 만들어서 did 초기화로 무용지물.
     $("#didDeleteBtn").click(async function() {
-        var result = confirm("블록체인에서 DID를 삭제하시겠습니까?");
+        var result = confirm("블록체인에서 DID를 삭제하시겠습니까?\n해당 tx가 확정될 때가지 기댜려 주세요. 약 (2분)");
         if(!result){
             return false;   
         }
@@ -139,6 +139,7 @@ $(document).ready(async function() {
             gasPrice: '30000000000',
             chainId: 3
         }, (err, res) => {
+            alert("삭제되었습니다.");
             if (err) console.log("err occured");
             else isRegist = res;
         })
@@ -147,7 +148,7 @@ $(document).ready(async function() {
         document.getElementById("didDeleteBtn").style.display = "none";
 
 
-        alert("삭제되었습니다. 해당 tx가 확정될 때가지 기댜려 주세요. 약 (2분)");
+        
 
         return false;
     });
@@ -160,7 +161,7 @@ $(document).ready(async function() {
         let regitDdoc;
         let docstr;
 
-        var result = confirm("해당 정보로 블록체인에서 DID를 생성하시겠습니까?");
+        var result = confirm("해당 정보로 블록체인에서 DID를 생성하시겠습니까? \n 해당 tx가 확정될 때가지 기댜려 주세요. 약 (2분)");
         if(!result){
             return false;   
         }
@@ -237,6 +238,7 @@ $(document).ready(async function() {
                         if (err) {
                             console.log(err);
                         } else {
+                            alert("생성되었습니다.");
                             console.log("success! ", res);
                         }
                     });
@@ -244,7 +246,7 @@ $(document).ready(async function() {
                     $("#eth-diddoc").val(JSON.stringify(ddoc2));
                     document.getElementById("didCreateBtn").style.display = "none";
 
-                    alert("등록되었습니다. 해당 tx가 확정될 때가지 기댜려 주세요. 약 (2분)");
+                    
                 }
             });
 
@@ -381,7 +383,8 @@ $(document).ready(async function() {
     <div class="content">
         <h2 class="content-subhead">Ethereum DID Test Page</h2>
         <div class="pure-form pure-form-aligned">
-   
+        
+
         
             <fieldset>
                 <legend>DID 정보</legend>
