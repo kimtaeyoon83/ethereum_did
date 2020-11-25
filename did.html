@@ -114,7 +114,7 @@ $(document).ready(async function() {
 
     //did 삭제를 위해 개인키 활용해서 recoverAd 하는 방향으로 구현. 근데 컨트랙트 새로 만들어서 did 초기화로 무용지물.
     $("#didDeleteBtn").click(async function() {
-        var result = confirm("블록체인에서 DID를 삭제하시겠습니까?\n해당 tx가 확정될 때가지 기댜려 주세요. 약 (2분)");
+        var result = confirm("블록체인에서 DID를 삭제하시겠습니까?");
         if(!result){
             return false;   
         }
@@ -139,10 +139,12 @@ $(document).ready(async function() {
             gasPrice: '30000000000',
             chainId: 3
         }, (err, res) => {
-            alert("삭제되었습니다.");
+            alert("삭제되었습니다.해당 tx가 확정될 때가지 기댜려 주세요. 약 (30초)");
             if (err) console.log("err occured");
             else isRegist = res;
         })
+        $("#eth-diddoc").val("");
+        alert("tx 확정되었습니다. ");
         console.log("isRegist - ", isRegist);
 
         document.getElementById("didDeleteBtn").style.display = "none";
@@ -161,7 +163,7 @@ $(document).ready(async function() {
         let regitDdoc;
         let docstr;
 
-        var result = confirm("해당 정보로 블록체인에서 DID를 생성하시겠습니까? \n 해당 tx가 확정될 때가지 기댜려 주세요. 약 (2분)");
+        var result = confirm("해당 정보로 블록체인에서 DID를 생성하시겠습니까?");
         if(!result){
             return false;   
         }
@@ -234,14 +236,16 @@ $(document).ready(async function() {
                     let getDdoc = await myContract.methods.getDdoc(regitDdoc.id).call({
                         from: myAccount
                     }, (err, res) => {
+                        alert("생성되었습니다.해당 tx가 확정될 때가지 기댜려 주세요. 약 (30초)");
                         console.log("Register did document and get it");
                         if (err) {
                             console.log(err);
                         } else {
-                            alert("생성되었습니다.");
+                    
                             console.log("success! ", res);
                         }
                     });
+                    alert("tx 확정되었습니다. ");
                     ddoc2 = prettier(getDdoc);
                     $("#eth-diddoc").val(JSON.stringify(ddoc2));
                     document.getElementById("didCreateBtn").style.display = "none";
